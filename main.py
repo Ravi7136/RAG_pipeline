@@ -15,10 +15,11 @@ async def main():
 
     vector_store, index, embeddings = create_vector_store(split_docs)
     bm25 = create_bm25(split_docs)
-
+# Search using Vector store
     print(search("What is Agentic AI?", embeddings, index, vector_store))
+# Reranking the search 
     print(search_with_rerank("What is Agentic AI?", bm25, split_docs))
-
+# Question answering using RAG and LLM pipeline
     rag = build_qa_pipeline(vector_store)
     response = rag.invoke("What is foundational understanding of AI Agent")
 
